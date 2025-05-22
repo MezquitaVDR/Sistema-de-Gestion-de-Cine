@@ -39,6 +39,7 @@ public class SistemaCine implements Serializable {
 
     public void hacerReserva(Cliente cliente, Funcion funcion, int asientos) {
         Reserva r = new Reserva(cliente, funcion, asientos);
+        cliente.agregarReserva(reserva);
         cliente.agregarReserva(r);
     }
 
@@ -64,6 +65,16 @@ public class SistemaCine implements Serializable {
             return new SistemaCine();
         }
 
+        public void mostrarReservas () {
+            if (reservas.isEmpty()) {
+                System.out.println("Este cliente no tiene reservas.");
+            } else {
+                for (Reserva r : reservas) {
+                    r.mostrarReserva();
+                    System.out.println("-----------");
+                }
+            }
+        }
+
     }
 }
-

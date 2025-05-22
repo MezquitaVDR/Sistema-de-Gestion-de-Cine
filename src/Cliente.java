@@ -6,6 +6,7 @@ public class Cliente implements Serializable  {
     private String nombre;
     private String correo;
     private List<Reserva> reservas;
+    private ArrayList<Reserva> reservas;
 
     public Cliente(String nombre, String correo) {
         this.nombre = nombre;
@@ -28,4 +29,10 @@ public class Cliente implements Serializable  {
     public String getNombre() {
         return nombre;
     }
+
+    public void agregarReserva(Reserva reserva) {
+        reservas.add(reserva);
+    }
+
+
 }
