@@ -38,10 +38,17 @@ public class SistemaCine implements Serializable {
     }
 
     public void hacerReserva(Cliente cliente, Funcion funcion, int asientos) {
+        if (asientos > funcion.getAsientosDisponibles()) {
+            System.out.println("❌ No hay suficientes asientos disponibles.");
+            return;
+        }
+
         Reserva r = new Reserva(cliente, funcion, asientos);
-        cliente.agregarReserva(reserva);
+        funcion.reservarAsiento(asientos);
         cliente.agregarReserva(r);
+        System.out.println("✅ Reserva realizada con éxito.");
     }
+
 
     public void cancelarReserva(Cliente cliente, Reserva reserva) {
         reserva.cancelar();

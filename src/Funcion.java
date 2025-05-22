@@ -15,12 +15,10 @@ public class Funcion implements Serializable
     }
 
     public void reservarAsientos(int cantidad) {
-        if (cantidad <= asientosDisponibles) {
-            asientosDisponibles -= cantidad;
-        } else {
-            throw new IllegalArgumentException("No hay suficientes asientos disponibles.");
-        }
+        this.asientosDisponibles -= cantidad;
     }
+
+
 
     public void cancelarAsientos(int cantidad) {
         asientosDisponibles += cantidad;
