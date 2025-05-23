@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ConsolaCine {
     private SistemaCine sistema;
@@ -17,16 +18,56 @@ public class ConsolaCine {
             opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
-                case 1 -> registrarPelicula();
-                case 2 -> registrarSala();
-                case 3 -> registrarCliente();
-                case 4 -> programarFuncion();
-                case 5 -> hacerReserva();
-                case 6 -> cancelarReserva();
-                case 7 -> mostrarCartelera();
-                case 8 -> listarReservas();
-                case 9 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opción inválida.");
+                case 1 : registrarPelicula();
+                break;
+                case 2 : registrarSala();
+                break;
+                case 3 : registrarCliente();
+                break;
+                case 4 : programarFuncion();
+                break;
+                case 5 : hacerReserva();
+                break;
+                case 6 : cancelarReserva();
+                break;
+                case 7 : mostrarCartelera();
+                break;
+                case 8 : listarReservas();
+                break;
+                case 9 :List<Cliente> clientes = sistema.getClientes();
+
+                    if (clientes.isEmpty()) {
+                        System.out.println("❌ No hay clientes registrados.");
+                        break;
+                    }
+
+                    System.out.println("Seleccione el cliente:");
+                    for (int i = 0; i < clientes.size(); i++) {
+                        System.out.println(i + ". " + clientes.get(i).getNombre());
+                    }
+                    int indexCliente = scanner.nextInt();
+                    Cliente cliente = clientes.get(indexCliente);
+
+                    if (cliente.getReservas().isEmpty()) {
+                        System.out.println("❌ Este cliente no tiene reservas.");
+                        break;
+                    }
+
+                    System.out.println("Seleccione la reserva a cancelar:");
+                    List<Reserva> reservas = cliente.getReservas();
+                    for (int i = 0; i < reservas.size(); i++) {
+                        System.out.println(i + ". " + reservas.get(i));
+                    }
+                    int indexReserva = scanner.nextInt();
+                    Reserva reserva = reservas.get(indexReserva);
+
+                    cliente.cancelarReserva(reserva); // ✅ Cancelación y liberación de asientos
+                    break;
+
+                case 10 : System.out.println("Saliendo...");
+                break;
+                default : System.out.println("Opción inválida.");
+                break;
             }
         } while (opcion != 9);
     }
@@ -41,7 +82,8 @@ public class ConsolaCine {
         System.out.println("6. Cancelar reserva");
         System.out.println("7. Mostrar cartelera");
         System.out.println("8. Listar reservas por cliente");
-        System.out.println("9. Salir");
+        System.out.println("9. Cancelar reserva");
+        System.out.println("10. Salir");
         System.out.print("Seleccione una opción: ");
     }
 

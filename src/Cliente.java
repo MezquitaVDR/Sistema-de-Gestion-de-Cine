@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 
-public class Cliente implements Serializable  {
+public class Cliente implements Serializable {
     private String nombre;
     private String correo;
     private List<Reserva> reservas;
-    private ArrayList<Reserva> reservas;
 
     public Cliente(String nombre, String correo) {
         this.nombre = nombre;
@@ -18,8 +17,13 @@ public class Cliente implements Serializable  {
         reservas.add(reserva);
     }
 
-    public void cancelarReserva(Reserva reserva) {
-        reservas.remove(reserva);
+    public void cancelarReserva(Reserva r) {
+        if (reservas.remove(r)) {
+            r.getFuncion().liberarAsientos(r.getAsientos());
+            System.out.println("✅ Reserva cancelada y asientos liberados.");
+        } else {
+            System.out.println("❌ No se encontró la reserva para cancelar.");
+        }
     }
 
     public List<Reserva> getReservas() {
@@ -29,10 +33,4 @@ public class Cliente implements Serializable  {
     public String getNombre() {
         return nombre;
     }
-
-    public void agregarReserva(Reserva reserva) {
-        reservas.add(reserva);
-    }
-
-
 }

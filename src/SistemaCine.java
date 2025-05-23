@@ -3,7 +3,7 @@ import java.util.List;
 import java.io.*;
 
 public class SistemaCine implements Serializable {
-
+    private List<Reserva> reservas = new ArrayList<>();
     private List<Pelicula> peliculas = new ArrayList<>();
     private List<Sala> salas = new ArrayList<>();
     private List<Cliente> clientes = new ArrayList<>();
@@ -44,7 +44,7 @@ public class SistemaCine implements Serializable {
         }
 
         Reserva r = new Reserva(cliente, funcion, asientos);
-        funcion.reservarAsiento(asientos);
+        funcion.reservarAsientos(asientos);
         cliente.agregarReserva(r);
         System.out.println("✅ Reserva realizada con éxito.");
     }
@@ -53,6 +53,7 @@ public class SistemaCine implements Serializable {
     public void cancelarReserva(Cliente cliente, Reserva reserva) {
         reserva.cancelar();
         cliente.cancelarReserva(reserva);
+
     }
 
     public void guardarDatos(String archivo) {
@@ -61,6 +62,18 @@ public class SistemaCine implements Serializable {
             System.out.println("✅ Datos guardados exitosamente.");
         } catch (IOException e) {
             System.out.println("❌ Error al guardar datos: " + e.getMessage());
+        }
+    }
+    public void mostrarReservas(Cliente cliente) {
+        List<Reserva> reservas = cliente.getReservas();
+
+        if (reservas.isEmpty()) {
+            System.out.println("Este cliente no tiene reservas.");
+        } else {
+            for (Reserva r : reservas) {
+                System.out.println(r); // o r.mostrarReserva() si tienes uno
+                System.out.println("-----------");
+            }
         }
     }
 
@@ -72,16 +85,7 @@ public class SistemaCine implements Serializable {
             return new SistemaCine();
         }
 
-        public void mostrarReservas () {
-            if (reservas.isEmpty()) {
-                System.out.println("Este cliente no tiene reservas.");
-            } else {
-                for (Reserva r : reservas) {
-                    r.mostrarReserva();
-                    System.out.println("-----------");
-                }
-            }
-        }
+
 
     }
 }

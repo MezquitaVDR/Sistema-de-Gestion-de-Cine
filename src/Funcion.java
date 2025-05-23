@@ -17,6 +17,9 @@ public class Funcion implements Serializable
     public void reservarAsientos(int cantidad) {
         this.asientosDisponibles -= cantidad;
     }
+    public void liberarAsientos(int cantidad) {
+        this.asientosDisponibles += cantidad;
+    }
 
 
 
