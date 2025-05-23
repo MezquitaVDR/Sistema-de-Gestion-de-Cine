@@ -7,4 +7,3 @@ public class Main {
         sistema.guardarDatos(archivo);
     }
 }
-

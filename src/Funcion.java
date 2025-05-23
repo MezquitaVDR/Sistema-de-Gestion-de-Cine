@@ -13,16 +13,12 @@ public class Funcion implements Serializable
         this.horario = horario;
         this.asientosDisponibles = sala.getCapacidad();
     }
-
     public void reservarAsientos(int cantidad) {
         this.asientosDisponibles -= cantidad;
     }
     public void liberarAsientos(int cantidad) {
         this.asientosDisponibles += cantidad;
     }
-
-
-
     public void cancelarAsientos(int cantidad) {
         asientosDisponibles += cantidad;
     }

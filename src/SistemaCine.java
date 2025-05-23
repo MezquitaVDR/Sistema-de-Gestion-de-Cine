@@ -84,8 +84,5 @@ public class SistemaCine implements Serializable {
             System.out.println("⚠️ No se pudo cargar datos, se creará un nuevo sistema.");
             return new SistemaCine();
         }
-
-
-
     }
 }

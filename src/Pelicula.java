@@ -13,7 +13,6 @@ public class Pelicula implements Serializable {
         this.clasificacion = clasificacion;
         this.genero = genero;
     }
-
     public String getTitulo() {
         return titulo;
     }
