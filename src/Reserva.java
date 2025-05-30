@@ -9,7 +9,6 @@ public class Reserva implements Serializable  {
         this.cliente = cliente;
         this.funcion = funcion;
         this.asientos = asientos;
-        funcion.reservarAsientos(asientos);
     }
 
     public void cancelar() {

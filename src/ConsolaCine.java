@@ -30,41 +30,12 @@ public class ConsolaCine {
                 break;
                 case 6 : cancelarReserva();
                 break;
-                case 7 : mostrarCartelera();
-                break;
+                case 7:
+                    sistema.mostrarCartelera();
+                    break;
                 case 8 : listarReservas();
                 break;
-                case 9 :List<Cliente> clientes = sistema.getClientes();
-
-                    if (clientes.isEmpty()) {
-                        System.out.println("❌ No hay clientes registrados.");
-                        break;
-                    }
-
-                    System.out.println("Seleccione el cliente:");
-                    for (int i = 0; i < clientes.size(); i++) {
-                        System.out.println(i + ". " + clientes.get(i).getNombre());
-                    }
-                    int indexCliente = scanner.nextInt();
-                    Cliente cliente = clientes.get(indexCliente);
-
-                    if (cliente.getReservas().isEmpty()) {
-                        System.out.println("❌ Este cliente no tiene reservas.");
-                        break;
-                    }
-
-                    System.out.println("Seleccione la reserva a cancelar:");
-                    List<Reserva> reservas = cliente.getReservas();
-                    for (int i = 0; i < reservas.size(); i++) {
-                        System.out.println(i + ". " + reservas.get(i));
-                    }
-                    int indexReserva = scanner.nextInt();
-                    Reserva reserva = reservas.get(indexReserva);
-
-                    cliente.cancelarReserva(reserva); // ✅ Cancelación y liberación de asientos
-                    break;
-
-                case 10 : System.out.println("Saliendo...");
+                case 9 : System.out.println("Saliendo...");
                 break;
                 default : System.out.println("Opción inválida.");
                 break;
@@ -82,8 +53,7 @@ public class ConsolaCine {
         System.out.println("6. Cancelar reserva");
         System.out.println("7. Mostrar cartelera");
         System.out.println("8. Listar reservas por cliente");
-        System.out.println("9. Cancelar reserva");
-        System.out.println("10. Salir");
+        System.out.println("9. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -228,16 +198,6 @@ public class ConsolaCine {
 
         sistema.cancelarReserva(cliente, reserva);
         System.out.println("Reserva cancelada.");
-    }
-
-    private void mostrarCartelera() {
-        for (Sala sala : sistema.getSalas()) {
-            System.out.println("Sala " + sala.getNumero() + " (" + sala.getTipo() + "):");
-            for (Funcion f : sala.getFunciones()) {
-                System.out.println("  - " + f.getPelicula().getTitulo() + " a las " + f.getHorario() +
-                        " | Asientos disponibles: " + f.getAsientosDisponibles());
-            }
-        }
     }
 
     private void listarReservas() {

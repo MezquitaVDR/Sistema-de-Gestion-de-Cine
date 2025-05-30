@@ -38,17 +38,12 @@ public class SistemaCine implements Serializable {
     }
 
     public void hacerReserva(Cliente cliente, Funcion funcion, int asientos) {
-        if (asientos > funcion.getAsientosDisponibles()) {
-            System.out.println("❌ No hay suficientes asientos disponibles.");
-            return;
+        if (asientos <= funcion.getAsientosDisponibles()) {
+            funcion.reservarAsientos(asientos);
+            Reserva r = new Reserva(cliente, funcion, asientos);
+            cliente.agregarReserva(r);
         }
-
-        Reserva r = new Reserva(cliente, funcion, asientos);
-        funcion.reservarAsientos(asientos);
-        cliente.agregarReserva(r);
-        System.out.println("✅ Reserva realizada con éxito.");
     }
-
 
     public void cancelarReserva(Cliente cliente, Reserva reserva) {
         reserva.cancelar();
@@ -73,6 +68,26 @@ public class SistemaCine implements Serializable {
             for (Reserva r : reservas) {
                 System.out.println(r); // o r.mostrarReserva() si tienes uno
                 System.out.println("-----------");
+            }
+        }
+    }
+    public void mostrarCartelera() {
+        if (salas.isEmpty()) {
+            System.out.println("❌ No hay salas registradas.");
+            return;
+        }
+
+        for (Sala sala : salas) {
+            List<Funcion> funciones = sala.getFunciones();
+            if (!funciones.isEmpty()) {
+                for (Funcion f : funciones) {
+                    Pelicula p = f.getPelicula();
+                    System.out.println("🎬 " + p.getTitulo() +
+                            " | Sala: " + sala.getNumero() +
+                            " (" + sala.getTipo() + ")" +
+                            " | Hora: " + f.getHorario() +
+                            " | Asientos disponibles: " + f.getAsientosDisponibles());
+                }
             }
         }
     }
