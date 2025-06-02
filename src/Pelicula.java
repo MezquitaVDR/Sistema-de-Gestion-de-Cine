@@ -22,5 +22,6 @@ public class Pelicula implements Serializable {
         System.out.println("Duración: " + duracion + " min");
         System.out.println("Clasificación: " + clasificacion);
         System.out.println("Género: " + genero);
+
     }
 }
