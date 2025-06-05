@@ -1,15 +1,20 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
-import java.io.Serializable;
-
+/**
+ * Clase Sala que representa una sala de cine.
+ */
 public class Sala implements Serializable {
+    private static final Logger LOGGER = Logger.getLogger(Sala.class.getName());
 
-    private int numero;
-    private int capacidad;
-    private String tipo; // 2D, 3D, VIP
-    private List<Funcion> funciones;
+    private final int numero;
+    private final int capacidad;
+    private final String tipo; // Ejemplo: "2D", "3D", "VIP"
+    private final List<Funcion> funciones;
 
+    // Constructor de la clase
     public Sala(int numero, int capacidad, String tipo) {
         this.numero = numero;
         this.capacidad = capacidad;
@@ -17,23 +22,15 @@ public class Sala implements Serializable {
         this.funciones = new ArrayList<>();
     }
 
+    // Metodo para agregar una funcion a la sala
     public void agregarFuncion(Funcion funcion) {
         funciones.add(funcion);
+        LOGGER.info("✅ Funcion agregada en Sala " + numero);
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public List<Funcion> getFunciones() {
-        return funciones;
-    }
+    // Metodos getter
+    public int getNumero() { return numero; }
+    public int getCapacidad() { return capacidad; }
+    public String getTipo() { return tipo; }
+    public List<Funcion> getFunciones() { return new ArrayList<>(funciones); } // Retorna copia de la lista
 }

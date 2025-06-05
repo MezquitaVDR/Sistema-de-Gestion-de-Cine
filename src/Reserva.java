@@ -1,36 +1,27 @@
 import java.io.Serializable;
 
-public class Reserva implements Serializable  {
-    private Cliente cliente;
-    private Funcion funcion;
-    private int asientos;
+/**
+ * Clase Reserva que representa una reserva de boletos para una funcion.
+ */
+public class Reserva implements Serializable {
+    private final Cliente cliente;
+    private final Funcion funcion;
+    private final int asientos;
 
+    // Constructor de la clase
     public Reserva(Cliente cliente, Funcion funcion, int asientos) {
         this.cliente = cliente;
         this.funcion = funcion;
         this.asientos = asientos;
     }
 
+    // Metodo para cancelar la reserva
     public void cancelar() {
-        funcion.cancelarAsientos(asientos);
+        funcion.reservarAsientos(-asientos);
     }
 
-    public Funcion getFuncion() {
-        return funcion;
-    }
-
-    public int getAsientos() {
-        return asientos;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    @Override
-    public String toString() {
-        return "Reserva de " + asientos + " asiento(s) para '" +
-                funcion.getPelicula().getTitulo() + "' en sala " +
-                funcion.getSala().getNumero() + " a las " + funcion.getHorario();
-    }
+    // Metodos getter
+    public Funcion getFuncion() { return funcion; }
+    public int getAsientos() { return asientos; }
+    public Cliente getCliente() { return cliente; }
 }
