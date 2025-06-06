@@ -2,74 +2,60 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
- //La clase ConsolaCine permite la interaccion del usuario con el sistema de gestion de cine.
- //Proporciona un menu con opciones para registrar peliculas, salas, clientes, funciones y reservas.
-
 public class ConsolaCine {
     private SistemaCine sistema;
     private Scanner scanner;
 
-    // Constructor de la clase ConsolaCine.
-    // sistema Instancia del sistema de cine que gestionara los datos.
     public ConsolaCine(SistemaCine sistema) {
         this.sistema = sistema;
         this.scanner = new Scanner(System.in);
     }
 
-
-    // Metodo principal que ejecuta el menu de opciones en un bucle.
     public void ejecutar() {
         int opcion;
         do {
             mostrarMenu();
-            // Captura la opcion elegida por el usuario
             opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
                 case 1 : registrarPelicula();
-                    break;
+                break;
                 case 2 : registrarSala();
-                    break;
+                break;
                 case 3 : registrarCliente();
-                    break;
+                break;
                 case 4 : programarFuncion();
-                    break;
+                break;
                 case 5 : hacerReserva();
-                    break;
+                break;
                 case 6 : cancelarReserva();
-                    break;
+                break;
                 case 7:
                     sistema.mostrarCartelera();
                     break;
                 case 8 : listarReservas();
-                    break;
+                break;
                 case 9 : System.out.println("Saliendo...");
-                    break;
+                break;
                 default : System.out.println("Opción inválida.");
-                    break;
+                break;
             }
         } while (opcion != 9);
     }
 
-    // Metodo para mostrar el menu de opciones al usuario.
     private void mostrarMenu() {
-        System.out.println("\n✨🎬 ¡BIENVENIDO AL CINE! 🎬✨");
-        System.out.println("==============================");
-        System.out.println("1️⃣ Registrar pelicula");
-        System.out.println("2️⃣ Registrar sala");
-        System.out.println("3️⃣ Registrar cliente");
-        System.out.println("4️⃣ Programar funcion");
-        System.out.println("5️⃣ Hacer reserva");
-        System.out.println("6️⃣ Cancelar reserva");
-        System.out.println("7️⃣ Mostrar cartelera");
-        System.out.println("8️⃣ Listar reservas por cliente");
-        System.out.println("9️⃣ Salir");
-        System.out.println("==============================");
-        System.out.print("📌 Seleccione una opcion: ");
+        System.out.println("\n===== MENÚ DEL CINE =====");
+        System.out.println("1. Registrar película");
+        System.out.println("2. Registrar sala");
+        System.out.println("3. Registrar cliente");
+        System.out.println("4. Programar función");
+        System.out.println("5. Hacer reserva");
+        System.out.println("6. Cancelar reserva");
+        System.out.println("7. Mostrar cartelera");
+        System.out.println("8. Listar reservas por cliente");
+        System.out.println("9. Salir");
+        System.out.print("Seleccione una opción: ");
     }
-//METODOS  -registrarPelicula() -registrarSala() -registrarCliente()
-// -programarFuncion() -hacerReserva() -cancelarReserva() -listarReservas()
 
     private void registrarPelicula() {
         System.out.print("Título: ");
