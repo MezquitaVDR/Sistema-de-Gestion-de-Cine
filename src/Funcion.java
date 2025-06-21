@@ -14,14 +14,15 @@ public class Funcion implements Serializable
         this.asientosDisponibles = sala.getCapacidad();
     }
     public void reservarAsientos(int cantidad) {
+        if (cantidad <= 0) throw new IllegalArgumentException("Cantidad inválida.");
+        if (cantidad > asientosDisponibles) throw new IllegalArgumentException("No hay suficientes asientos.");
         this.asientosDisponibles -= cantidad;
     }
+
     public void liberarAsientos(int cantidad) {
         this.asientosDisponibles += cantidad;
     }
-    public void cancelarAsientos(int cantidad) {
-        asientosDisponibles += cantidad;
-    }
+
 
     public int getAsientosDisponibles() {
         return asientosDisponibles;
@@ -33,6 +34,10 @@ public class Funcion implements Serializable
 
     public Pelicula getPelicula() {
         return pelicula;
+    }
+    @Override
+    public String toString() {
+        return pelicula.getTitulo() + " - " + horario + " - Sala " + sala.getNumero();
     }
 
     public Sala getSala() {

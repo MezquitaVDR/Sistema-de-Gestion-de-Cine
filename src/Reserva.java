@@ -6,14 +6,17 @@ public class Reserva implements Serializable  {
     private int asientos;
 
     public Reserva(Cliente cliente, Funcion funcion, int asientos) {
+        if (asientos <= 0) throw new IllegalArgumentException("Cantidad de asientos inválida.");
         this.cliente = cliente;
         this.funcion = funcion;
         this.asientos = asientos;
     }
 
+
     public void cancelar() {
-        funcion.cancelarAsientos(asientos);
+        funcion.liberarAsientos(asientos);
     }
+
 
     public Funcion getFuncion() {
         return funcion;

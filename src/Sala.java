@@ -18,8 +18,15 @@ public class Sala implements Serializable {
     }
 
     public void agregarFuncion(Funcion funcion) {
+        for (Funcion f : funciones) {
+            if (f.getHorario().equals(funcion.getHorario())) {
+                System.out.println("⚠️ Ya existe una función en ese horario.");
+                return;
+            }
+        }
         funciones.add(funcion);
     }
+
 
     public int getNumero() {
         return numero;
@@ -36,4 +43,9 @@ public class Sala implements Serializable {
     public List<Funcion> getFunciones() {
         return funciones;
     }
+    @Override
+    public String toString() {
+        return "Sala " + numero + " (" + tipo + ") - Capacidad: " + capacidad;
+    }
+
 }

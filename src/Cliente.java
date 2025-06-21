@@ -16,6 +16,13 @@ public class Cliente implements Serializable {
     public void agregarReserva(Reserva reserva) {
         reservas.add(reserva);
     }
+    @Override
+    public String toString() {
+        return nombre + " (" + correo + ")";
+    }
+    public String getCorreo() {
+        return correo;
+    }
 
     public void cancelarReserva(Reserva r) {
         if (reservas.remove(r)) {

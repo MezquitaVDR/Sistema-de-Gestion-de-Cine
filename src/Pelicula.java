@@ -17,10 +17,29 @@ public class Pelicula implements Serializable {
         return titulo;
     }
 
+
+
+    public int getDuracion() {    // para futuros reportes pueden ser muy utiles
+        return duracion;
+    }
+
+    public String getClasificacion() {
+        return clasificacion;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
     public void mostrarFicha() {
         System.out.println("Título: " + titulo);
         System.out.println("Duración: " + duracion + " min");
         System.out.println("Clasificación: " + clasificacion);
         System.out.println("Género: " + genero);
     }
+    @Override
+    public String toString() {
+        return titulo + " (" + genero + ", " + duracion + " min, " + clasificacion + ")";
+    }
+
 }

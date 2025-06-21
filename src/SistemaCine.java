@@ -17,8 +17,11 @@ public class SistemaCine implements Serializable {
     }
 
     public void registrarCliente(Cliente c) {
-        clientes.add(c);
+        if (!clientes.contains(c)) {
+            clientes.add(c);
+        }
     }
+
 
     public List<Pelicula> getPeliculas() {
         return peliculas;
@@ -100,4 +103,6 @@ public class SistemaCine implements Serializable {
             return new SistemaCine();
         }
     }
+    private static final long serialVersionUID = 1L;
+
 }

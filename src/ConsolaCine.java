@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ConsolaCine {
     private SistemaCine sistema;
@@ -35,12 +37,16 @@ public class ConsolaCine {
                     break;
                 case 8 : listarReservas();
                 break;
-                case 9 : System.out.println("Saliendo...");
+                case 9:
+                    limpiarArchivo("cine.dat");
+                    break;
+
+                case 10 : System.out.println("Saliendo...");
                 break;
                 default : System.out.println("Opción inválida.");
                 break;
             }
-        } while (opcion != 9);
+        } while (opcion != 10);
     }
 
     private void mostrarMenu() {
@@ -53,7 +59,9 @@ public class ConsolaCine {
         System.out.println("6. Cancelar reserva");
         System.out.println("7. Mostrar cartelera");
         System.out.println("8. Listar reservas por cliente");
-        System.out.println("9. Salir");
+        System.out.println("9. Limpiar todos los registros");
+
+        System.out.println("10. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -167,10 +175,17 @@ public class ConsolaCine {
             System.out.println("Error al reservar: " + e.getMessage());
         }
     }
+    public static void limpiarArchivo(String nombreArchivo) {
+        try (FileWriter writer = new FileWriter(nombreArchivo, false)) {
+            writer.write(""); // Borra el contenido del archivo
+            System.out.println("Archivo '" + nombreArchivo + "' limpiado exitosamente.");
+        } catch (IOException e) {
+            System.out.println("Error al limpiar el archivo: " + e.getMessage());
+        }
+    }
 
     private void cancelarReserva() {
         List<Cliente> clientes = sistema.getClientes();
-
         if (clientes.isEmpty()) {
             System.out.println("No hay clientes registrados.");
             return;
