@@ -1,10 +1,13 @@
 import java.io.Serializable;
-
+/**
+ * Clase Reserva que representa una reserva de boletos para una funcion.
+ */
 public class Reserva implements Serializable  {
     private Cliente cliente;
     private Funcion funcion;
     private int asientos;
 
+    // Constructor de la clase
     public Reserva(Cliente cliente, Funcion funcion, int asientos) {
         if (asientos <= 0) throw new IllegalArgumentException("Cantidad de asientos inválida.");
         this.cliente = cliente;
@@ -12,23 +15,15 @@ public class Reserva implements Serializable  {
         this.asientos = asientos;
     }
 
-
+    // Metodo para cancelar la reserva
     public void cancelar() {
         funcion.liberarAsientos(asientos);
     }
 
-
-    public Funcion getFuncion() {
-        return funcion;
-    }
-
-    public int getAsientos() {
-        return asientos;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
+    // Metodos getter
+    public Funcion getFuncion() { return funcion; }
+    public int getAsientos() { return asientos; }
+    public Cliente getCliente() { return cliente; }
 
     @Override
     public String toString() {

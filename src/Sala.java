@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.io.Serializable;
-
+/**
+ * Clase Sala que representa una sala de cine.
+ */
 public class Sala implements Serializable {
 
     private int numero;
@@ -10,6 +12,7 @@ public class Sala implements Serializable {
     private String tipo; // 2D, 3D, VIP
     private List<Funcion> funciones;
 
+    // Constructor de la clase
     public Sala(int numero, int capacidad, String tipo) {
         this.numero = numero;
         this.capacidad = capacidad;
@@ -17,6 +20,7 @@ public class Sala implements Serializable {
         this.funciones = new ArrayList<>();
     }
 
+    // Metodo para agregar una funcion a la sala
     public void agregarFuncion(Funcion funcion) {
         for (Funcion f : funciones) {
             if (f.getHorario().equals(funcion.getHorario())) {
@@ -27,7 +31,7 @@ public class Sala implements Serializable {
         funciones.add(funcion);
     }
 
-
+    // Metodos getter
     public int getNumero() {
         return numero;
     }
